@@ -34,7 +34,8 @@ Please include a README.md describing your design and implementation choices, an
 ### Dependencies
 * [Ruby](https://www.ruby-lang.org/en/downloads)
 * [Rails](https://github.com/rails/rails)
-* [Npm](https://nodejs.org/en/download)
+* [Node](https://nodejs.org/en/download)
+* [Yarn](https://yarnpkg.com/lang/en/docs/install)
 
 ### Setup
 
@@ -42,7 +43,8 @@ Please include a README.md describing your design and implementation choices, an
 ```
 $ gem install bundler
 
-$ bundle && yarn
+$ bundle
+$ rails yarn:install
 ```
 
 ### Commands

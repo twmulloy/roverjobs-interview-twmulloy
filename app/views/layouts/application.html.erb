@@ -6,10 +6,10 @@
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-    <%#= javascript_pack_tag 'hello_react' %>
   </head>
 
   <body>
     <%= yield %>
+    <%= yield :packs %>
   </body>
 </html>
