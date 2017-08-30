@@ -1,0 +1,12 @@
+default: &default
+  service_types: []
+  services: []
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default

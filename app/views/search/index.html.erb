@@ -1,5 +1,9 @@
+<% content_for :head do %>
+  <%= Gon::Base.render_data(namespace: 'env') %>
+<% end %>
+
 <% content_for :packs do %>
   <%= javascript_pack_tag 'search' %>
 <% end %>
 
-<h1>Search</h1>
+<div id="client"></div>

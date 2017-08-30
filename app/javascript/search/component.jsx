@@ -6,8 +6,16 @@ export default class Search extends Component {
   static defaultProps = {}
 
   render() {
+    console.log(this.props)
+
     return (
-      <div>Search Component</div>
+      <ol>
+        <li>
+          <ol>
+
+          </ol>
+        </li>
+      </ol>
     )
   }
 }
