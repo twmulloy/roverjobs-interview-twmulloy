@@ -9,6 +9,10 @@ export default class Form extends Component {
   }
   // static defaultProps = {}
 
+  handleSubmit(e) {
+    e.preventDefault()
+  }
+
   renderServices(services) {
     return (
       <ul>
@@ -45,7 +49,7 @@ export default class Form extends Component {
     return (
       <div>
         <h1>Form</h1>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <ul>
             <li>
               {this.renderServiceTypes()}
@@ -53,7 +57,7 @@ export default class Form extends Component {
             <li>
               <ul>
                 <li>
-                  <label htmlFor="input_address">Dog Boarding near</label>
+                  <label htmlFor="input_address">CURRENT_TYPE near</label>
                   <input id="input_address" type="text" name/>
                 </li>
                 <li>
@@ -62,6 +66,8 @@ export default class Form extends Component {
               </ul>
             </li>
           </ul>
+
+          <button type="submit">Search</button>
         </form>
       </div>
     )
