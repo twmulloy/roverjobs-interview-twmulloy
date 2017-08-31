@@ -45,7 +45,6 @@ export default class Form extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div>
         <h1>Form</h1>

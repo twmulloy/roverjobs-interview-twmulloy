@@ -47,6 +47,9 @@ $ bundle && yarn
 
 ### Commands
 ```
+# Run dependency update
+$ npm run update
+
 # Run necessary development web-servers
 $ yarn start
 

@@ -5,6 +5,7 @@
   "scripts": {
     "server": "foreman start -f Procfile.dev",
     "start": "npm run server",
-    "postinstall": "cd client && yarn install"
+    "postinstall": "cd client && yarn install",
+    "update": "bundle && yarn"
   }
 }
