@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Button } from 'react-bootstrap'
 
 import InputRadio from './InputRadio'
 
@@ -66,7 +67,7 @@ export default class Form extends Component {
             </li>
           </ul>
 
-          <button type="submit">Search</button>
+          <Button type="submit" bsStyle="primary">Search</Button>
         </form>
       </div>
     )
