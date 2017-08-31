@@ -58,14 +58,6 @@ export default class Form extends Component {
             <li>
               {this.renderServiceTypes()}
             </li>
-            <li>
-              <ul>
-                <li>
-                  <label htmlFor="input_address">{this.props.selectedService} near</label>
-                  <input id="input_address" type="text" name/>
-                </li>
-              </ul>
-            </li>
           </ul>
 
           <Button type="submit" bsStyle="primary">Search</Button>
