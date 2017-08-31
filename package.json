@@ -1,0 +1,10 @@
+{
+  "name": "interview",
+  "private": true,
+  "dependencies": {},
+  "scripts": {
+    "server": "foreman start -f Procfile.dev",
+    "start": "npm run server",
+    "postinstall": "cd client && yarn install"
+  }
+}

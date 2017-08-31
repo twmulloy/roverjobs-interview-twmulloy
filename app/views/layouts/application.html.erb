@@ -5,12 +5,11 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= yield :head %>
     <%= javascript_include_tag 'application', defer: true %>
   </head>
 
   <body>
     <%= yield %>
-    <%= yield :packs %>
+    <%= javascript_pack_tag 'webpack-bundle' %>
   </body>
 </html>

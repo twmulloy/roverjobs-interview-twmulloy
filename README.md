@@ -41,10 +41,8 @@ Please include a README.md describing your design and implementation choices, an
 
 #### MacOS
 ```
-$ gem install bundler
-
-$ bundle
-$ rails yarn:install
+$ gem install bundler foreman
+$ bundle && yarn
 ```
 
 ### Commands
