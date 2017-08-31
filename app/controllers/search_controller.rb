@@ -15,7 +15,6 @@ class SearchController < ApplicationController
   def set_props
     @defaultProps = {}
 
-    # TODO: Make ActiveModel Serializer
     service_types = Rails.configuration.search['services'].map do |k, v|
       {
         name: k,
@@ -25,15 +24,15 @@ class SearchController < ApplicationController
           {
             name: vk,
             label: I18n.t("services.#{vk.tr('-', '_')}"),
-            value: vk,
-            defaultChecked: vv['default'] || false
+            value: vk
           }
         end
       }
     end
 
     @props ||= {
-      serviceTypes: service_types
+      serviceTypes: service_types,
+      selectedService: @defaultProps[:service]
     }
   end
 

@@ -6,7 +6,8 @@ import InputRadio from './InputRadio'
 
 export default class Form extends Component {
   static propTypes = {
-    serviceTypes: PropTypes.arrayOf(PropTypes.object)
+    serviceTypes: PropTypes.arrayOf(PropTypes.object),
+    selectedService: PropTypes.string
   }
   // static defaultProps = {}
 
@@ -24,7 +25,10 @@ export default class Form extends Component {
               name="service"
               label={service.label}
               value={service.value}
-              defaultChecked={service.defaultChecked}
+              isSelected={service.value === this.props.selectedService}
+              onClick={() => {
+                console.log('clicked')
+              }}
             />
           )
         })}
@@ -57,11 +61,8 @@ export default class Form extends Component {
             <li>
               <ul>
                 <li>
-                  <label htmlFor="input_address">CURRENT_TYPE near</label>
+                  <label htmlFor="input_address">{this.props.selectedService} near</label>
                   <input id="input_address" type="text" name/>
-                </li>
-                <li>
-
                 </li>
               </ul>
             </li>
