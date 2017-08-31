@@ -1,6 +1,13 @@
 default: &default
-  service_types: []
-  services: []
+  services:
+    away:
+      overnight-boarding:
+        default: true
+      overnight-traveling: {}
+      drop-in: {}
+    work:
+      doggy-day-care: {}
+      dog-walking: {}
 
 development:
   <<: *default
