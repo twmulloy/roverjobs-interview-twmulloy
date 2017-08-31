@@ -51,6 +51,9 @@ $ rails yarn:install
 ```
 # Run necessary development web-servers
 $ yarn start
+
+# Rails server running on port 3000
+$ open http://localhost:3000
 ```
 
 ## Production

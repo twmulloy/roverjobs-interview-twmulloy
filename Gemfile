@@ -16,7 +16,9 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', github: 'rails/webpacker'
+gem 'webpacker', '~> 3.0'
+# Server side rendering of React
+gem 'react-rails', '~> 2.2.1'
 # Js environment
 gem 'gon', '~> 6.1.0'
 
