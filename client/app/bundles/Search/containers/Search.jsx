@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+// import { connect } from 'react-redux'
 import {
   Grid,
   Row,
@@ -12,12 +13,10 @@ import Form from '../components/Form'
 import Results from '../components/Results'
 
 export default class Search extends Component {
-  static propTypes = {
-    servicesTypes: PropTypes.arrayOf(PropTypes.object),
-    selectedService: PropTypes.string,
-    searchResponse: PropTypes.object
+  constructor(props, context) {
+    super(props, context)
+    console.log('<Search/>', arguments)
   }
-  static defaultProps = {}
 
   render() {
     return (
@@ -46,3 +45,5 @@ export default class Search extends Component {
     )
   }
 }
+
+// export default connect()(Search)

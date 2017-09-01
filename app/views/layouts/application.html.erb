@@ -6,11 +6,11 @@
 
     <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css' %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= javascript_include_tag 'application', defer: true %>
+    <%= javascript_pack_tag 'webpack-bundle', defer: true %>
   </head>
 
   <body>
+    <%= redux_store_hydration_data %>
     <%= yield %>
-    <%= javascript_pack_tag 'webpack-bundle' %>
   </body>
 </html>

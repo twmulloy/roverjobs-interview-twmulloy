@@ -6,8 +6,20 @@ import InputRadio from './InputRadio'
 
 export default class Form extends Component {
   static propTypes = {
-    serviceTypes: PropTypes.arrayOf(PropTypes.object),
-    selectedService: PropTypes.string
+    serviceTypes: PropTypes.arrayOf(PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      services: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        label: PropTypes.string.isRequired,
+        value: PropTypes.string.isRequired
+      }))
+    })),
+    selectedService: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      value: PropTypes.string.isRequired
+    }),
   }
   static defaultProps = {}
 
@@ -25,7 +37,7 @@ export default class Form extends Component {
               name="service"
               label={service.label}
               value={service.value}
-              isSelected={service.value === this.props.selectedService}
+              isSelected={service.value === this.props.selectedService.value}
               onClick={() => {
                 console.log('clicked')
               }}
@@ -37,6 +49,12 @@ export default class Form extends Component {
   }
 
   renderServiceTypes() {
+    const serviceTypes = this.props.serviceTypes
+
+    if (!serviceTypes) {
+      return
+    }
+
     return (
       <div>
         {this.props.serviceTypes.map((serviceType) => (

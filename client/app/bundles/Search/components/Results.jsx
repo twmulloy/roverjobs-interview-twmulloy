@@ -6,11 +6,11 @@ export default class Results extends Component {
   static propTypes = {
     searchResponse: PropTypes.shape({
       results: PropTypes.arrayOf(PropTypes.shape({
-        person_opk: PropTypes.string,
-        person_name: PropTypes.string
-      })),
-      page_count: PropTypes.number,
-      previous: PropTypes.number
+        person_opk: PropTypes.string.isRequired,
+        person_name: PropTypes.string.isRequired
+      })).isRequired,
+      page_count: PropTypes.number.isRequired,
+      previous: PropTypes.number.isRequired
     })
   }
   static defaultProps = {
@@ -20,9 +20,9 @@ export default class Results extends Component {
   }
 
   renderResults() {
-    const list = this.props.searchResponse.results || []
+    const results = this.props.searchResponse.results
 
-    if (list.length === 0) {
+    if (!results) {
       return (
         <h2>No Results</h2>
       )
@@ -31,9 +31,9 @@ export default class Results extends Component {
     return (
       <div>
         <ol>
-          {list.map((item) => (
-            <li key={`result_${item.person_opk}`}>
-              {item.person_name}
+          {results.map((result) => (
+            <li key={`result_${result.person_opk}`}>
+              {result.person_name}
             </li>
           ))}
         </ol>

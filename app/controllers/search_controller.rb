@@ -1,13 +1,20 @@
 class SearchController < ApplicationController
+  include ReactOnRails::Controller
+
   before_action :set_props, :rover_client, only: :index
 
   def index
     search_response = @rover_client.search(
-      @defaultProps[:service],
-      { centerlat: 47.60621, centerlng: -122.33207 }
+      @defaultProps[:service][:value],
+      {
+        centerlat: 47.60621,
+        centerlng: -122.33207
+      }
     )
 
     @props.merge!(searchResponse: search_response)
+
+    redux_store('Store', props: @props)
   end
 
   private
@@ -20,12 +27,13 @@ class SearchController < ApplicationController
         name: k,
         label: I18n.t("service_types.#{k}"),
         services: v.map do |vk, vv|
-          @defaultProps[:service] = vk if vv['default']
-          {
+          service = {
             name: vk,
             label: I18n.t("services.#{vk.tr('-', '_')}"),
             value: vk
           }
+          @defaultProps[:service] = service if vv['default']
+          service
         end
       }
     end
