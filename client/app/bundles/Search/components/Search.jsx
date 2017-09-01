@@ -1,5 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import {
+  Grid,
+  Row,
+  Col,
+  PageHeader,
+  Panel
+} from 'react-bootstrap'
 
 import Form from './Form'
 import Results from './Results'
@@ -13,16 +20,29 @@ export default class Search extends Component {
   // static defaultProps = {}
 
   render() {
-    // console.log(this.props)
     return (
-      <div>
-        <h1>Search</h1>
-        <Form
-          serviceTypes={this.props.serviceTypes}
-          selectedService={this.props.selectedService}
-        />
-        <Results searchResponse={this.props.searchResponse} />
-      </div>
+      <Grid>
+        <Row>
+          <Col>
+            <PageHeader>Search</PageHeader>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Panel>
+              <Form
+                serviceTypes={this.props.serviceTypes}
+                selectedService={this.props.selectedService}
+              />
+            </Panel>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Results searchResponse={this.props.searchResponse} />
+          </Col>
+        </Row>
+      </Grid>
     )
   }
 }

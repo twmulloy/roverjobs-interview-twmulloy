@@ -17,7 +17,7 @@ export default class Form extends Component {
 
   renderServices(services) {
     return (
-      <ul>
+      <div>
         {services.map((service) => {
           return (
             <InputRadio
@@ -32,45 +32,33 @@ export default class Form extends Component {
             />
           )
         })}
-      </ul>
+      </div>
     )
   }
 
   renderServiceTypes() {
     return (
-      <ul>
+      <div>
         {this.props.serviceTypes.map((serviceType) => (
-          <li key={`service-type_${serviceType.name}`}>
+          <div key={`service-type_${serviceType.name}`}>
             <label>{serviceType.label}</label>
             {this.renderServices(serviceType.services)}
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     )
   }
 
   render() {
     return (
-      <div>
-        <h1>Form</h1>
-        <form onSubmit={this.handleSubmit}>
-          <ul>
-            <li>
-              {this.renderServiceTypes()}
-            </li>
-            <li>
-              <label>When?</label>
-              <ul>
-                <li>
+      <form onSubmit={this.handleSubmit}>
+        {this.renderServiceTypes()}
+        <div>
+          <label>When?</label>
+        </div>
 
-                </li>
-              </ul>
-            </li>
-          </ul>
-
-          <Button type="submit" bsStyle="primary">Search</Button>
-        </form>
-      </div>
+        <Button type="submit" bsStyle="primary">Search</Button>
+      </form>
     )
   }
 }
