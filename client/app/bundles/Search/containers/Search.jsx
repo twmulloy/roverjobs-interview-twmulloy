@@ -8,8 +8,8 @@ import {
   Panel
 } from 'react-bootstrap'
 
-import Form from './Form'
-import Results from './Results'
+import Form from '../components/Form'
+import Results from '../components/Results'
 
 export default class Search extends Component {
   static propTypes = {
@@ -17,7 +17,7 @@ export default class Search extends Component {
     selectedService: PropTypes.string,
     searchResponse: PropTypes.object
   }
-  // static defaultProps = {}
+  static defaultProps = {}
 
   render() {
     return (

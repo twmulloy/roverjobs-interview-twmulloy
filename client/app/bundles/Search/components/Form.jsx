@@ -9,7 +9,7 @@ export default class Form extends Component {
     serviceTypes: PropTypes.arrayOf(PropTypes.object),
     selectedService: PropTypes.string
   }
-  // static defaultProps = {}
+  static defaultProps = {}
 
   handleSubmit(e) {
     e.preventDefault()
