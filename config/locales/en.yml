@@ -30,11 +30,6 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  dog_sizes:
-    small: 0-15lbs
-    medium: 16-40lbs
-    large: 41-100lbs
-    giant: 101+lbs
   service_types:
     away: For When You’re Away
     work: For When You’re At Work

@@ -6,6 +6,6 @@
     "server": "foreman start -f Procfile.dev",
     "start": "npm run server",
     "postinstall": "cd client && yarn install",
-    "update": "bundle && yarn"
+    "update": "npm i && bundle && yarn"
   }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Pagination } from 'react-bootstrap'
 
 export default class Results extends Component {
   static propTypes = {
@@ -7,10 +8,16 @@ export default class Results extends Component {
       results: PropTypes.arrayOf(PropTypes.shape({
         person_opk: PropTypes.string,
         person_name: PropTypes.string
-      }))
+      })),
+      page_count: PropTypes.number,
+      previous: PropTypes.number
     })
   }
-  // static defaultProps = {}
+  static defaultProps = {
+    searchResponse: {
+      previous: 0
+    }
+  }
 
   renderResults() {
     const list = this.props.searchResponse.results || []
@@ -22,13 +29,24 @@ export default class Results extends Component {
     }
 
     return (
-      <ol>
-        {list.map((item) => (
-          <li key={`result_${item.person_opk}`}>
-            {item.person_name}
-          </li>
-        ))}
-      </ol>
+      <div>
+        <ol>
+          {list.map((item) => (
+            <li key={`result_${item.person_opk}`}>
+              {item.person_name}
+            </li>
+          ))}
+        </ol>
+
+        <Pagination
+          prev
+          next
+          boundaryLinks
+          items={this.props.searchResponse.page_count}
+          maxButtons={7}
+          activePage={this.props.searchResponse.previous+1}
+        />
+      </div>
     )
   }
 
