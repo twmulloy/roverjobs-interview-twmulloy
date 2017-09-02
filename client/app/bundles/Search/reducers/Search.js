@@ -1,4 +1,4 @@
-import * as actionTypes from '../constants/Search'
+import { UPDATE_SEARCH_RESPONSE } from '../constants/Search'
 
 const initialState = {
   servicesTypes: [],
@@ -7,7 +7,15 @@ const initialState = {
 }
 
 const searchReducer = (state = initialState, action) => {
-  return state
+  const { type } = action
+
+  switch (type) {
+    case UPDATE_SEARCH_RESPONSE:
+      console.log(`ACTION ${type}`, action)
+      return state
+    default:
+      return state
+  }
 }
 
 export default searchReducer

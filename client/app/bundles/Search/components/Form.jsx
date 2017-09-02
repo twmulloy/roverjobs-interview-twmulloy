@@ -21,7 +21,6 @@ export default class Form extends Component {
       value: PropTypes.string.isRequired
     }),
   }
-  static defaultProps = {}
 
   handleSubmit(e) {
     e.preventDefault()

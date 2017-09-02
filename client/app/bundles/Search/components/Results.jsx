@@ -8,15 +8,25 @@ export default class Results extends Component {
       results: PropTypes.arrayOf(PropTypes.shape({
         person_opk: PropTypes.string.isRequired,
         person_name: PropTypes.string.isRequired
-      })).isRequired,
-      page_count: PropTypes.number.isRequired,
-      previous: PropTypes.number.isRequired
+      })),
+      page_count: PropTypes.number,
+      previous: PropTypes.number
     })
   }
   static defaultProps = {
     searchResponse: {
       previous: 0
     }
+  }
+
+  constructor(props) {
+    super(props)
+
+    this.handlePageSelect = this.handlePageSelect.bind(this)
+  }
+
+  handlePageSelect() {
+    console.log('select', this)
   }
 
   renderResults() {
@@ -45,6 +55,7 @@ export default class Results extends Component {
           items={this.props.searchResponse.page_count}
           maxButtons={7}
           activePage={this.props.searchResponse.previous+1}
+          onSelect={this.handlePageSelect}
         />
       </div>
     )

@@ -1,8 +1,17 @@
-import * as actionTypes from '../constants/Search'
+import { UPDATE_SEARCH_RESPONSE } from '../constants/Search'
+import api from '../api'
 
-export function updateName(name) {
-  return {
-    type: actionTypes.HELLO_WORLD_NAME_UPDATE,
-    name
-  }
-}
+export const updateSearchResponse = (response) => ({
+  type: UPDATE_SEARCH_RESPONSE,
+  response
+})
+
+export const search = (query) => (
+  (dispatch) => (
+    api.show('test').then((resp) => {
+      if (resp.ok) {
+        dispatch(actions.setSearchResponse(resp))
+      }
+    })
+  )
+)
