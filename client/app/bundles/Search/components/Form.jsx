@@ -3,27 +3,31 @@ import PropTypes from 'prop-types'
 import { Button } from 'react-bootstrap'
 
 import InputRadio from './InputRadio'
+import actions from '../actions'
 
 export default class Form extends Component {
   static propTypes = {
     serviceTypes: PropTypes.arrayOf(PropTypes.shape({
-      name: PropTypes.string.isRequired,
+      value: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired,
       services: PropTypes.arrayOf(PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        label: PropTypes.string.isRequired,
-        value: PropTypes.string.isRequired
+        value: PropTypes.string.isRequired,
+        label: PropTypes.string.isRequired
       }))
     })),
     selectedService: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired
+      value: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired
     }),
+    onServiceSelect: PropTypes.func
   }
 
   handleSubmit(e) {
     e.preventDefault()
+  }
+
+  handleServiceClick(service) {
+    this.props.onServiceSelect(service)
   }
 
   renderServices(services) {
@@ -32,14 +36,12 @@ export default class Form extends Component {
         {services.map((service) => {
           return (
             <InputRadio
-              key={`service_${service.name}`}
+              key={`service_${service.value}`}
               name="service"
               label={service.label}
               value={service.value}
               isSelected={service.value === this.props.selectedService.value}
-              onClick={() => {
-                console.log('clicked')
-              }}
+              onClick={() => this.handleServiceClick(service)}
             />
           )
         })}
@@ -57,7 +59,7 @@ export default class Form extends Component {
     return (
       <div>
         {this.props.serviceTypes.map((serviceType) => (
-          <div key={`service-type_${serviceType.name}`}>
+          <div key={`service-type_${serviceType.value}`}>
             <label>{serviceType.label}</label>
             {this.renderServices(serviceType.services)}
           </div>

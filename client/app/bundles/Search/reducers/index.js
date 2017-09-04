@@ -1,3 +1,6 @@
+import {
+  SET_SERVICE
+} from '../constants'
 import actions from '../actions'
 
 const initialState = {
@@ -7,7 +10,11 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-  switch (action.type) {
+  const { type } = action
+  switch (type) {
+    case SET_SERVICE:
+      console.log(type)
+      return state
     default:
       return state
   }

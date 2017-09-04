@@ -1,15 +1,19 @@
+import {
+  SET_SERVICE
+} from '../constants'
 import api from '../services/api'
 
-const actions = {
-  search(query) {
-    return dispatch => {
-      api.show('test').then(resp => {
-        if (resp.ok) {
-          console.log(resp)
-        }
-      })
-    }
-  }
-}
+export const setService = (service) => (
+  type: SET_SERVICE,
+  service
+)
 
-export default actions
+export const searchProxy = (query) => (
+  (dispatch) => {
+    api.show('/search', query).then(resp => {
+      if (resp.ok) {
+        console.log(resp)
+      }
+    })
+  }
+)
