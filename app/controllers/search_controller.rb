@@ -12,7 +12,7 @@ class SearchController < ApplicationController
       }
     )
 
-    @props[:search].merge!(searchResponse: search_response)
+    @props.merge!(searchResponse: search_response)
 
     redux_store('Store', props: @props)
   end
@@ -39,10 +39,8 @@ class SearchController < ApplicationController
     end
 
     @props ||= {
-      search: {
-        serviceTypes: service_types,
-        selectedService: @defaultProps[:service]
-      }
+      serviceTypes: service_types,
+      selectedService: @defaultProps[:service]
     }
   end
 
