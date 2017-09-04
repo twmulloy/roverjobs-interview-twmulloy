@@ -8,15 +8,15 @@ Rover's Git repo was involved in a head-on SHA-1 collision and we lost all of ou
 
 Use our [Search API](/search-api.md) endpoint to fetch a list of search results and display them in a reasonable manner. The design and styling of the page are completely up to you. The application should be isomorphic.
 
-- Use a current-generation frontend JavaScript framework
-- Pull search results from the Search API endpoint
-- Display search results
-- You can hard code the geolocation (latitude and longitude) and the service type (e.g. 'overnight-boarding')
-- Add search filters for at least date and price
-- Use Webpack to bundle assets with separate development and production builds
-- The development environment should have HMR
-- The production environment should be server-side rendered (including the initial search results) with client-side hydration
-- The layout should be responsive and reflow reasonably on mobile and tablet
+- [x] Use a current-generation frontend JavaScript framework
+- [x] Pull search results from the Search API endpoint
+- [x] Display search results
+- [x] You can hard code the geolocation (latitude and longitude) and the service type (e.g. 'overnight-boarding')
+- [ ] Add search filters for at least date and price
+- [x] Use Webpack to bundle assets with separate development and production builds
+- [ ] The development environment should have HMR
+- [x] The production environment should be server-side rendered (including the initial search results) with client-side hydration
+- [x] The layout should be responsive and reflow reasonably on mobile and tablet
 
 ## Additional Requirements
 
