@@ -12,19 +12,16 @@ import {
 import Form from '../components/Form'
 import Results from '../components/Results'
 import {
-  searchProxy
+  searchProxy,
+  setSearchResponse
 } from '../actions'
 
-const mapStateToProps = (state) => ({
-  ...state,
-  selectedService: state.selectedService
-})
-
+const mapStateToProps = (state) => ({ ...state })
 const mapDispatchToProps = (dispatch) => ({
   onServiceSelect: (service) => {
     const { value } = service
-    const query = { type: value }
-    dispatch(searchProxy(query))
+    const queryParams = { type: value }
+    dispatch(searchProxy(queryParams))
   }
 })
 

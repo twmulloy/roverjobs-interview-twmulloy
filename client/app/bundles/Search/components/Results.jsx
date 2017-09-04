@@ -11,10 +11,12 @@ export default class Results extends Component {
       })),
       page_count: PropTypes.number,
       previous: PropTypes.number
-    })
+    }).isRequired
   }
   static defaultProps = {
     searchResponse: {
+      results: [],
+      page_count: 0,
       previous: 0
     }
   }

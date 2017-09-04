@@ -13,13 +13,13 @@ export default class Form extends Component {
       services: PropTypes.arrayOf(PropTypes.shape({
         value: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired
-      }))
+      })).isRequired
     })),
     selectedService: PropTypes.shape({
       value: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired
-    }),
-    onServiceSelect: PropTypes.func
+    }).isRequired,
+    onServiceSelect: PropTypes.func.isRequired
   }
 
   handleSubmit(e) {

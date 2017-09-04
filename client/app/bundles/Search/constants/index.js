@@ -1,1 +1,2 @@
 export const SET_SERVICE = 'SET_SERVICE'
+export const SET_SEARCH_RESPONSE = 'SET_SEARCH_RESPONSE'
