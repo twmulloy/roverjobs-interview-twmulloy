@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
   root 'search#index'
 
-  get 'search', to: 'search#proxy'
+  get 'search/:service_type', to: 'search#proxy'
 end

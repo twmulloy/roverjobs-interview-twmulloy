@@ -11,7 +11,7 @@ class SearchController < ApplicationController
   end
 
   def proxy
-    response = rover_search(params.require(:type))
+    response = rover_search(params.require(:service_type))
     render json: response, status: response.code
   end
 
@@ -53,6 +53,13 @@ class SearchController < ApplicationController
   end
 
   def rover_search(service_type)
-    @rover_client.search(service_type, @location)
+    query_params = {}
+    query_params.merge!(@location)
+
+    if request.query_parameters
+      query_params.merge!(request.query_parameters)
+    end
+
+    @rover_client.search(service_type, query_params)
   end
 end

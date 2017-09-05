@@ -13,7 +13,9 @@ import Form from '../components/Form'
 import Results from '../components/Results'
 import {
   searchProxy,
-  setSearchResponse
+  setSearchResponse,
+  setDropOffOn,
+  setPickUpOn
 } from '../actions'
 
 const mapStateToProps = (state) => ({ ...state })
@@ -21,16 +23,28 @@ const mapDispatchToProps = (dispatch) => ({
   onServiceSelect: (service) => {
     dispatch(searchProxy(service))
   },
-  onResultsPageSelect: (pageNumber) => {
-
-  }
+  onDropOffOnChange: (date) => {
+    dispatch(setDropOffOn(date))
+  },
+  onPickUpOnChange: (date) => {
+    dispatch(setPickUpOn(date))
+  },
+  onSearchSubmit: (service, params) => {
+    dispatch(searchProxy(service, params))
+  },
+  onResultsPageSelect: (pageNumber) => {}
 })
 
 const Search = ({
   serviceTypes,
   selectedService,
   searchResponse,
+  dropOffOn,
+  pickUpOn,
   onServiceSelect,
+  onDropOffOnChange,
+  onPickUpOnChange,
+  onSearchSubmit,
   onResultsPageSelect
 }) => (
   <Grid>
@@ -45,7 +59,12 @@ const Search = ({
           <Form
             serviceTypes={serviceTypes}
             selectedService={selectedService}
+            dropOffOn={dropOffOn}
+            pickUpOn={pickUpOn}
             onServiceSelect={onServiceSelect}
+            onDropOffOnChange={onDropOffOnChange}
+            onPickUpOnChange={onPickUpOnChange}
+            onSearchSubmit={onSearchSubmit}
           />
         </Panel>
       </Col>
