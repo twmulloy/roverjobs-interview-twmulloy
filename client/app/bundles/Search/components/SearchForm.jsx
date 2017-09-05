@@ -9,15 +9,7 @@ import {
 import DatePicker from 'react-bootstrap-date-picker'
 
 import InputRadio from './InputRadio'
-import actions from '../actions'
-
-const formatDate = (datetime) => {
-  const date = new Date(datetime)
-  const month = ('0' + (date.getMonth()+1)).slice(-2)
-  const day = ('0' + date.getDate()).slice(-2)
-  const year = date.getFullYear()
-  return [year, month, day].join('-')
-}
+import { mapSearchFilters } from '../actions'
 
 export default class SearchForm extends Component {
   static propTypes = {
@@ -33,6 +25,7 @@ export default class SearchForm extends Component {
       value: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired
     }).isRequired,
+    updateSearchParams: PropTypes.func.isRequired,
     dropOffOn: PropTypes.string,
     pickUpOn: PropTypes.string,
     minPrice: PropTypes.number,
@@ -46,40 +39,18 @@ export default class SearchForm extends Component {
 
   constructor(props) {
     super(props)
-
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  getSearchFilters() {
-    let params = {}
-
-    // Date
-    if (this.props.dropOffOn) {
-      params.start_date = formatDate(this.props.dropOffOn)
-    }
-    if (this.props.pickUpOn) {
-      params.end_date = formatDate(this.props.pickUpOn)
-    }
-
-    // Price
-    if (Math.floor(this.props.minPrice) >= 0) {
-      params.minprice = this.props.minPrice
-    }
-    if (Math.floor(this.props.maxPrice) >= 0) {
-      params.maxprice = this.props.maxPrice
-    }
-
-    console.log(params)
-
-    return params
+  getSearchParams() {
+    return mapSearchFilters(this.props)
   }
 
   handleSubmit(e) {
     e.preventDefault()
-    this.props.onSearchSubmit(
-      this.props.selectedService,
-      this.getSearchFilters()
-    )
+    const searchParams = this.getSearchParams()
+    this.props.updateSearchParams(searchParams)
+    this.props.onSearchSubmit(this.props.selectedService, searchParams)
   }
 
   renderServices(services) {
@@ -93,7 +64,10 @@ export default class SearchForm extends Component {
               label={service.label}
               value={service.value}
               isSelected={service.value === this.props.selectedService.value}
-              onClick={() => this.props.onSearchSubmit(service, this.getSearchFilters())}
+              onClick={(e) => {
+                const searchParams = this.getSearchParams()
+                this.props.onSearchSubmit(service, searchParams)
+              }}
             />
           )
         })}

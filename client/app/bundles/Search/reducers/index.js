@@ -1,5 +1,6 @@
 import {
   SET_SEARCH_RESPONSE,
+  SET_SEARCH_PARAMS,
   SET_SELECTED_SERVICE,
   SET_DROP_OFF_ON,
   SET_PICK_UP_ON,
@@ -12,6 +13,7 @@ const initialState = {
   servicesTypes: [],
   selectedService: {},
   searchResponse: {},
+  searchParams: {},
   dropOffOn: '',
   pickUpOn: '',
   minPrice: 0,
@@ -29,6 +31,10 @@ const reducer = (state = initialState, action) => {
     case SET_SEARCH_RESPONSE:
       const { searchResponse } = action
       return { ...state, searchResponse }
+
+    case SET_SEARCH_PARAMS:
+      const { searchParams } = action
+      return { ...state, searchParams }
 
     case SET_DROP_OFF_ON:
       const { dropOffOn } = action

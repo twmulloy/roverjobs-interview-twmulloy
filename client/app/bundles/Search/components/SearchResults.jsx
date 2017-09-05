@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Pagination } from 'react-bootstrap'
+import {
+  Media,
+  Pagination
+} from 'react-bootstrap'
 
 export default class SearchResults extends Component {
   static propTypes = {
@@ -9,16 +12,26 @@ export default class SearchResults extends Component {
         person_opk: PropTypes.string.isRequired,
         person_name: PropTypes.string.isRequired
       })),
+      count: PropTypes.number,
       page_count: PropTypes.number,
-      previous: PropTypes.number
-    }).isRequired
-  }
-  static defaultProps = {
-    searchResponse: {
-      results: [],
-      page_count: 0,
-      previous: 0
-    }
+      previous: PropTypes.string,
+      query: PropTypes.shape({
+        page: PropTypes.number
+      })
+    }).isRequired,
+    onSearchSubmit: PropTypes.func.isRequired,
+    searchParams: PropTypes.shape({
+      start_date: PropTypes.string,
+      end_date: PropTypes.string,
+      minprice: PropTypes.number,
+      maxprice: PropTypes.number,
+      page: PropTypes.number
+    }),
+    selectedService: PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired
+    }).isRequired,
+    updateSearchParams: PropTypes.func.isRequired
   }
 
   constructor(props) {
@@ -27,8 +40,10 @@ export default class SearchResults extends Component {
     this.handlePageSelect = this.handlePageSelect.bind(this)
   }
 
-  handlePageSelect() {
-    console.log('select', this)
+  handlePageSelect(page) {
+    const searchParams = { ...this.props.searchParams, page }
+    this.props.updateSearchParams(searchParams)
+    this.props.onSearchSubmit(this.props.selectedService, searchParams)
   }
 
   renderResults() {
@@ -42,13 +57,11 @@ export default class SearchResults extends Component {
 
     return (
       <div>
-        <ol>
-          {results.map((result) => (
-            <li key={`result_${result.person_opk}`}>
-              {result.person_name}
-            </li>
-          ))}
-        </ol>
+        {results.map((result) => (
+          <Media key={`result_${result.person_opk}`}>
+            {result.person_name}
+          </Media>
+        ))}
 
         <Pagination
           prev
@@ -56,7 +69,7 @@ export default class SearchResults extends Component {
           boundaryLinks
           items={this.props.searchResponse.page_count}
           maxButtons={7}
-          activePage={this.props.searchResponse.previous+1}
+          activePage={this.props.searchResponse.query.page}
           onSelect={this.handlePageSelect}
         />
       </div>
@@ -66,7 +79,7 @@ export default class SearchResults extends Component {
   render() {
     return (
       <div>
-        <h1>Results</h1>
+        <h1>{this.props.searchResponse.count} Results</h1>
         {this.renderResults()}
       </div>
     )

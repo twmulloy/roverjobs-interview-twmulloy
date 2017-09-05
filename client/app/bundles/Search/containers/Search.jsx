@@ -13,6 +13,7 @@ import SearchResults from '../components/SearchResults'
 import {
   searchProxy,
   setSearchResponse,
+  setSearchParams,
   setDropOffOn,
   setPickUpOn,
   setMinPrice,
@@ -29,7 +30,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(setPickUpOn(date))
   },
   onMinPriceChange: (price) => {
-    console.log('PRICE', price)
     dispatch(setMinPrice(price))
   },
   onMaxPriceChange: (price) => {
@@ -38,7 +38,9 @@ const mapDispatchToProps = (dispatch) => ({
   onSearchSubmit: (service, params) => {
     dispatch(searchProxy(service, params))
   },
-  onResultsPageSelect: (pageNumber) => {}
+  updateSearchParams: (params) => {
+    dispatch(setSearchParams(params))
+  }
 })
 
 const Search = (props) => (
@@ -57,6 +59,7 @@ const Search = (props) => (
           pickUpOn={props.pickUpOn}
           minPrice={props.minPrice}
           maxPrice={props.maxPrice}
+          updateSearchParams={props.updateSearchParams}
           onDropOffOnChange={props.onDropOffOnChange}
           onPickUpOnChange={props.onPickUpOnChange}
           onMinPriceChange={props.onMinPriceChange}
@@ -68,8 +71,16 @@ const Search = (props) => (
     <Row>
       <Col>
         <SearchResults
+          selectedService={props.selectedService}
           searchResponse={props.searchResponse}
-          onResultsPageSelect={props.onResultsPageSelect}
+          selectedService={props.selectedService}
+          dropOffOn={props.dropOffOn}
+          pickUpOn={props.pickUpOn}
+          minPrice={props.minPrice}
+          maxPrice={props.maxPrice}
+          searchParams={props.searchParams}
+          updateSearchParams={props.updateSearchParams}
+          onSearchSubmit={props.onSearchSubmit}
         />
       </Col>
     </Row>

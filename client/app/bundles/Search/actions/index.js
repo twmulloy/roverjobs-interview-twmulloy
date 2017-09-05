@@ -1,5 +1,6 @@
 import {
   SET_SEARCH_RESPONSE,
+  SET_SEARCH_PARAMS,
   SET_SELECTED_SERVICE,
   SET_DROP_OFF_ON,
   SET_PICK_UP_ON,
@@ -11,6 +12,11 @@ import api from '../services/api'
 export const setSearchResponse = (searchResponse) => ({
   type: SET_SEARCH_RESPONSE,
   searchResponse
+})
+
+export const setSearchParams = (searchParams) => ({
+  type: SET_SEARCH_PARAMS,
+  searchParams
 })
 
 export const setSelectedService = (selectedService) => ({
@@ -51,4 +57,34 @@ export const searchProxy = (service, params) => {
         dispatch(setSelectedService(service))
       })
   }
+}
+
+const formatDate = (datetime) => {
+  const date = new Date(datetime)
+  const month = ('0' + (date.getMonth()+1)).slice(-2)
+  const day = ('0' + date.getDate()).slice(-2)
+  const year = date.getFullYear()
+  return [year, month, day].join('-')
+}
+
+export const mapSearchFilters = (props) => {
+  let params = {}
+
+  // Date
+  if (props.dropOffOn) {
+    params.start_date = formatDate(props.dropOffOn)
+  }
+  if (props.pickUpOn) {
+    params.end_date = formatDate(props.pickUpOn)
+  }
+
+  // Price
+  if (Math.floor(props.minPrice) >= 0) {
+    params.minprice = props.minPrice
+  }
+  if (Math.floor(props.maxPrice) >= 0) {
+    params.maxprice = props.maxPrice
+  }
+
+  return params
 }
