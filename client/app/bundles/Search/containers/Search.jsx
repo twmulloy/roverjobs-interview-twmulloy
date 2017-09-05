@@ -47,7 +47,7 @@ const Search = (props) => (
   <Grid>
     <Row>
       <Col>
-        <PageHeader>Search</PageHeader>
+        <PageHeader>Search <small>Rover Coding Project</small></PageHeader>
       </Col>
     </Row>
     <Row>

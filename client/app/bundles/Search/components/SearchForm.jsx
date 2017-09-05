@@ -4,7 +4,9 @@ import {
   Grid,
   Row,
   Col,
-  Button
+  Button,
+  FormGroup, FormControl,
+  InputGroup
 } from 'react-bootstrap'
 import DatePicker from 'react-bootstrap-date-picker'
 
@@ -83,14 +85,16 @@ export default class SearchForm extends Component {
     }
 
     return (
-      <div>
+      <Grid>
         {this.props.serviceTypes.map((serviceType) => (
-          <div key={`service-type_${serviceType.value}`}>
-            <label>{serviceType.label}</label>
-            {this.renderServices(serviceType.services)}
-          </div>
+          <Row key={`service-type_${serviceType.value}`}>
+            <Col>
+              <label>{serviceType.label}</label>
+              {this.renderServices(serviceType.services)}
+            </Col>
+          </Row>
         ))}
-      </div>
+      </Grid>
     )
   }
 
@@ -103,19 +107,23 @@ export default class SearchForm extends Component {
           </Col>
         </Row>
         <Row>
-          <Col>
-            <DatePicker
-              placeholder="Drop off"
-              onChange={this.props.onDropOffOnChange}
-              value={this.props.dropOffOn}
-            />
+          <Col md={3}>
+            <FormGroup>
+              <DatePicker
+                placeholder="Drop off"
+                onChange={this.props.onDropOffOnChange}
+                value={this.props.dropOffOn}
+              />
+            </FormGroup>
           </Col>
-          <Col>
-            <DatePicker
-              placeholder="Pick up"
-              onChange={this.props.onPickUpOnChange}
-              value={this.props.pickUpOn}
-            />
+          <Col md={3}>
+            <FormGroup>
+              <DatePicker
+                placeholder="Pick up"
+                onChange={this.props.onPickUpOnChange}
+                value={this.props.pickUpOn}
+              />
+            </FormGroup>
           </Col>
         </Row>
       </Grid>
@@ -131,30 +139,40 @@ export default class SearchForm extends Component {
           </Col>
         </Row>
         <Row>
-          <Col>
-            <input
-              type="number"
-              defaultValue={this.props.minPrice}
-              placeholder="Min price"
-              onChange={(e) => {
-                this.props.onMinPriceChange(parseInt(e.target.value, 10))
-              }}
-              step={1}
-              min={0}
-              max={this.props.maxPrice}
-            />
+          <Col md={3}>
+            <FormGroup>
+              <InputGroup>
+                <InputGroup.Addon>$</InputGroup.Addon>
+                <FormControl
+                  type="number"
+                  defaultValue={this.props.minPrice}
+                  placeholder="Min price"
+                  onChange={(e) => {
+                    this.props.onMinPriceChange(parseInt(e.target.value, 10))
+                  }}
+                  step={1}
+                  min={0}
+                  max={this.props.maxPrice}
+                />
+              </InputGroup>
+            </FormGroup>
           </Col>
-          <Col>
-            <input
-              type="number"
-              defaultValue={this.props.maxPrice}
-              placeholder="Max price"
-              onChange={(e) => {
-                this.props.onMaxPriceChange(parseInt(e.target.value, 10))
-              }}
-              step={1}
-              min={this.props.minPrice}
-            />
+          <Col md={3}>
+            <FormGroup>
+              <InputGroup>
+                <InputGroup.Addon>$</InputGroup.Addon>
+                <FormControl
+                  type="number"
+                  defaultValue={this.props.maxPrice}
+                  placeholder="Max price"
+                  onChange={(e) => {
+                    this.props.onMaxPriceChange(parseInt(e.target.value, 10))
+                  }}
+                  step={1}
+                  min={this.props.minPrice}
+                />
+              </InputGroup>
+            </FormGroup>
           </Col>
         </Row>
       </Grid>
