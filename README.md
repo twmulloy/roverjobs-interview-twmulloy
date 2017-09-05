@@ -12,7 +12,7 @@ Use our [Search API](/search-api.md) endpoint to fetch a list of search results 
 - [x] Pull search results from the Search API endpoint
 - [x] Display search results
 - [x] You can hard code the geolocation (latitude and longitude) and the service type (e.g. 'overnight-boarding')
-- [ ] Add search filters for at least date and price
+- [x] Add search filters for at least date and price
 - [x] Use Webpack to bundle assets with separate development and production builds
 - [ ] The development environment should have HMR
 - [x] The production environment should be server-side rendered (including the initial search results) with client-side hydration
@@ -56,10 +56,3 @@ $ yarn start
 # Rails server running on port 3000
 $ open http://localhost:3000
 ```
-
-## Additional Requirements Goals
-- [x] Service Type Filtering
-- [x] (Server-side) I18n for Service Types
-- [ ] Ruby + ES Linting
-- [ ] Results Pagination
-- [ ] Loading cues when searching

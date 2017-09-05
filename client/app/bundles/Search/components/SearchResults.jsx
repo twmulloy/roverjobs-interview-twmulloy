@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Pagination } from 'react-bootstrap'
 
-export default class Results extends Component {
+export default class SearchResults extends Component {
   static propTypes = {
     searchResponse: PropTypes.shape({
       results: PropTypes.arrayOf(PropTypes.shape({
@@ -32,9 +32,9 @@ export default class Results extends Component {
   }
 
   renderResults() {
-    const results = this.props.searchResponse.results
+    const results = this.props.searchResponse.results || []
 
-    if (!results) {
+    if (results.length === 0) {
       return (
         <h2>No Results</h2>
       )

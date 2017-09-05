@@ -2,7 +2,9 @@ import {
   SET_SEARCH_RESPONSE,
   SET_SELECTED_SERVICE,
   SET_DROP_OFF_ON,
-  SET_PICK_UP_ON
+  SET_PICK_UP_ON,
+  SET_MIN_PRICE,
+  SET_MAX_PRICE
 } from '../constants'
 import actions from '../actions'
 
@@ -11,7 +13,9 @@ const initialState = {
   selectedService: {},
   searchResponse: {},
   dropOffOn: '',
-  pickUpOn: ''
+  pickUpOn: '',
+  minPrice: 0,
+  maxPrice: 0
 }
 
 const reducer = (state = initialState, action) => {
@@ -33,6 +37,14 @@ const reducer = (state = initialState, action) => {
     case SET_PICK_UP_ON:
       const { pickUpOn } = action
       return { ...state, pickUpOn }
+
+    case SET_MIN_PRICE:
+      const { minPrice } = action
+      return { ...state, minPrice }
+
+    case SET_MAX_PRICE:
+      const { maxPrice } = action
+      return { ...state, maxPrice }
 
     default:
       return state

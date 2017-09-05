@@ -5,29 +5,35 @@ import {
   Grid,
   Row,
   Col,
-  PageHeader,
-  Panel
+  PageHeader
 } from 'react-bootstrap'
 
-import Form from '../components/Form'
-import Results from '../components/Results'
+import SearchForm from '../components/SearchForm'
+import SearchResults from '../components/SearchResults'
 import {
   searchProxy,
   setSearchResponse,
   setDropOffOn,
-  setPickUpOn
+  setPickUpOn,
+  setMinPrice,
+  setMaxPrice
 } from '../actions'
 
 const mapStateToProps = (state) => ({ ...state })
+
 const mapDispatchToProps = (dispatch) => ({
-  onServiceSelect: (service) => {
-    dispatch(searchProxy(service))
-  },
   onDropOffOnChange: (date) => {
     dispatch(setDropOffOn(date))
   },
   onPickUpOnChange: (date) => {
     dispatch(setPickUpOn(date))
+  },
+  onMinPriceChange: (price) => {
+    console.log('PRICE', price)
+    dispatch(setMinPrice(price))
+  },
+  onMaxPriceChange: (price) => {
+    dispatch(setMaxPrice(price))
   },
   onSearchSubmit: (service, params) => {
     dispatch(searchProxy(service, params))
@@ -35,18 +41,7 @@ const mapDispatchToProps = (dispatch) => ({
   onResultsPageSelect: (pageNumber) => {}
 })
 
-const Search = ({
-  serviceTypes,
-  selectedService,
-  searchResponse,
-  dropOffOn,
-  pickUpOn,
-  onServiceSelect,
-  onDropOffOnChange,
-  onPickUpOnChange,
-  onSearchSubmit,
-  onResultsPageSelect
-}) => (
+const Search = (props) => (
   <Grid>
     <Row>
       <Col>
@@ -55,25 +50,26 @@ const Search = ({
     </Row>
     <Row>
       <Col>
-        <Panel>
-          <Form
-            serviceTypes={serviceTypes}
-            selectedService={selectedService}
-            dropOffOn={dropOffOn}
-            pickUpOn={pickUpOn}
-            onServiceSelect={onServiceSelect}
-            onDropOffOnChange={onDropOffOnChange}
-            onPickUpOnChange={onPickUpOnChange}
-            onSearchSubmit={onSearchSubmit}
-          />
-        </Panel>
+        <SearchForm
+          serviceTypes={props.serviceTypes}
+          selectedService={props.selectedService}
+          dropOffOn={props.dropOffOn}
+          pickUpOn={props.pickUpOn}
+          minPrice={props.minPrice}
+          maxPrice={props.maxPrice}
+          onDropOffOnChange={props.onDropOffOnChange}
+          onPickUpOnChange={props.onPickUpOnChange}
+          onMinPriceChange={props.onMinPriceChange}
+          onMaxPriceChange={props.onMaxPriceChange}
+          onSearchSubmit={props.onSearchSubmit}
+        />
       </Col>
     </Row>
     <Row>
       <Col>
-        <Results
-          searchResponse={searchResponse}
-          onResultsPageSelect={onResultsPageSelect}
+        <SearchResults
+          searchResponse={props.searchResponse}
+          onResultsPageSelect={props.onResultsPageSelect}
         />
       </Col>
     </Row>

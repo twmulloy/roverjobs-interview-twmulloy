@@ -2,7 +2,9 @@ import {
   SET_SEARCH_RESPONSE,
   SET_SELECTED_SERVICE,
   SET_DROP_OFF_ON,
-  SET_PICK_UP_ON
+  SET_PICK_UP_ON,
+  SET_MIN_PRICE,
+  SET_MAX_PRICE
 } from '../constants'
 import api from '../services/api'
 
@@ -24,6 +26,16 @@ export const setDropOffOn = (dropOffOn) => ({
 export const setPickUpOn = (pickUpOn) => ({
   type: SET_PICK_UP_ON,
   pickUpOn
+})
+
+export const setMinPrice = (minPrice) => ({
+  type: SET_MIN_PRICE,
+  minPrice
+})
+
+export const setMaxPrice = (maxPrice) => ({
+  type: SET_MAX_PRICE,
+  maxPrice
 })
 
 export const searchProxy = (service, params) => {
