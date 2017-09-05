@@ -19,9 +19,10 @@ import {
 const mapStateToProps = (state) => ({ ...state })
 const mapDispatchToProps = (dispatch) => ({
   onServiceSelect: (service) => {
-    const { value } = service
-    const queryParams = { type: value }
-    dispatch(searchProxy(queryParams))
+    dispatch(searchProxy(service))
+  },
+  onResultsPageSelect: (pageNumber) => {
+
   }
 })
 
@@ -29,7 +30,8 @@ const Search = ({
   serviceTypes,
   selectedService,
   searchResponse,
-  onServiceSelect
+  onServiceSelect,
+  onResultsPageSelect
 }) => (
   <Grid>
     <Row>
@@ -50,7 +52,10 @@ const Search = ({
     </Row>
     <Row>
       <Col>
-        <Results searchResponse={searchResponse} />
+        <Results
+          searchResponse={searchResponse}
+          onResultsPageSelect={onResultsPageSelect}
+        />
       </Col>
     </Row>
   </Grid>

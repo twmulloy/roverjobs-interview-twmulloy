@@ -1,22 +1,23 @@
 import {
-  SET_SERVICE,
-  SET_SEARCH_RESPONSE
+  SET_SEARCH_RESPONSE,
+  SET_SELECTED_SERVICE
 } from '../constants'
 import api from '../services/api'
-
-export const setService = (service) => ({
-  type: SET_SERVICE,
-  service
-})
 
 export const setSearchResponse = (searchResponse) => ({
   type: SET_SEARCH_RESPONSE,
   searchResponse
 })
 
-export const searchProxy = (queryParams) => (
-  (dispatch) => (
-    api.show('/search', queryParams)
+export const setSelectedService = (selectedService) => ({
+  type: SET_SELECTED_SERVICE,
+  selectedService
+})
+
+export const searchProxy = (service) => {
+  return (dispatch) => {
+    const queryParams = { type: service.value }
+    return api.show('/search', queryParams)
       .then((resp) => {
         if (resp.ok) {
           return resp.body
@@ -24,6 +25,7 @@ export const searchProxy = (queryParams) => (
       })
       .then((data) => {
         dispatch(setSearchResponse(data))
+        dispatch(setSelectedService(service))
       })
-  )
-)
+  }
+}

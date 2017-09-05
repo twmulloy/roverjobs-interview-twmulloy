@@ -57,6 +57,9 @@ $ yarn start
 $ open http://localhost:3000
 ```
 
-## Production
-
-## Test
+## Additional Requirements Goals
+- [x] Service Type Filtering
+- [x] (Server-side) I18n for Service Types
+- [ ] Ruby + ES Linting
+- [ ] Results Pagination
+- [ ] Loading cues when searching
